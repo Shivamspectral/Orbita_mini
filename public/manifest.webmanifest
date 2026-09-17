@@ -1,0 +1,11 @@
+{
+  "name": "Astra Orbita Mini — Student Council Management System",
+  "short_name": "Astra Orbita Mini",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#fbf4ec",
+  "theme_color": "#7a1f3d",
+  "description": "Vercel full-stack Student Council Management System with FastAPI and Supabase.",
+  "icons": [],
+  "scope": "./"
+}
