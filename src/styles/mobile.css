@@ -1456,3 +1456,311 @@
     box-sizing: border-box !important;
   }
 }
+
+
+/* -------------------------------------------------------------------------
+   FINAL MOBILE CHAT POLISH
+   The desktop chat sidebar is converted into a compact 4-channel tab strip
+   on phones. This prevents the sidebar from becoming a large blank/white
+   block and keeps the conversation panel full-width.
+   ------------------------------------------------------------------------- */
+@media (max-width: 650px) {
+  #view-chat {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  #view-chat .section-header {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    padding: 0 4px !important;
+    margin-bottom: 14px !important;
+  }
+
+  #view-chat .section-header > div:first-child {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  #view-chat .section-header h2 {
+    font-size: 1.22rem !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+  }
+
+  #view-chat .section-header p {
+    font-size: .72rem !important;
+    line-height: 1.4 !important;
+    margin: 8px 0 0 !important;
+  }
+
+  #view-chat .section-header > div:last-child {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+  }
+
+  #view-chat .chat-shell {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    height: calc(100dvh - 238px) !important;
+    min-height: 500px !important;
+    max-height: 720px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) !important;
+    grid-template-rows: 76px minmax(0, 1fr) !important;
+    overflow: hidden !important;
+    border-radius: 20px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Compact channel strip: no giant white sidebar. */
+  #view-chat .chat-sidebar {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 76px !important;
+    min-height: 76px !important;
+    max-height: 76px !important;
+    overflow: hidden !important;
+    border: 0 !important;
+    border-bottom: 1px solid rgba(122,31,61,.09) !important;
+    background: rgba(255,255,255,.72) !important;
+    box-sizing: border-box !important;
+  }
+
+  #view-chat .chat-side-head,
+  #view-chat .chat-search {
+    display: none !important;
+  }
+
+  #view-chat .chat-list {
+    width: 100% !important;
+    height: 76px !important;
+    min-height: 76px !important;
+    max-height: 76px !important;
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    padding: 6px !important;
+    box-sizing: border-box !important;
+  }
+
+  #view-chat .chat-item {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    margin: 0 2px !important;
+    padding: 5px 3px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 3px !important;
+    overflow: hidden !important;
+    border: 1px solid transparent !important;
+    border-radius: 12px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  #view-chat .chat-item.active {
+    background: #fff7f1 !important;
+    border-color: rgba(122,31,61,.16) !important;
+    box-shadow: 0 3px 10px rgba(84,21,42,.07) !important;
+  }
+
+  #view-chat .chat-item .chat-avatar {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    border-radius: 10px !important;
+    font-size: .78rem !important;
+    flex: 0 0 34px !important;
+  }
+
+  #view-chat .chat-item-main {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    flex: 0 0 auto !important;
+    text-align: center !important;
+  }
+
+  #view-chat .chat-item-top {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  #view-chat .chat-item-top strong {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    font-size: .53rem !important;
+    line-height: 1.1 !important;
+  }
+
+  #view-chat .chat-time,
+  #view-chat .chat-preview {
+    display: none !important;
+  }
+
+  /* Conversation area always occupies the remaining phone width. */
+  #view-chat .chat-main {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  #view-chat .chat-head {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 62px !important;
+    padding: 9px 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  #view-chat .chat-head-left {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  #view-chat .chat-head-left .chat-avatar {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    border-radius: 11px !important;
+  }
+
+  #view-chat .chat-head-title {
+    min-width: 0 !important;
+  }
+
+  #view-chat .chat-head-title h3 {
+    max-width: 180px !important;
+    font-size: .88rem !important;
+  }
+
+  #view-chat .chat-head-title p {
+    font-size: .61rem !important;
+  }
+
+  #view-chat .chat-head-actions {
+    flex: 0 0 auto !important;
+  }
+
+  #view-chat .chat-head-actions .chat-icon-btn {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    border-radius: 10px !important;
+  }
+
+  #view-chat .chat-head-actions .chat-icon-btn:nth-child(2) {
+    display: none !important;
+  }
+
+  #view-chat .chat-messages {
+    width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: 14px 10px 8px !important;
+    box-sizing: border-box !important;
+  }
+
+  #view-chat .chat-row {
+    width: 100% !important;
+    min-width: 0 !important;
+    gap: 7px !important;
+    margin: 9px 0 !important;
+  }
+
+  #view-chat .chat-bubble-wrap {
+    min-width: 0 !important;
+    max-width: calc(100% - 36px) !important;
+  }
+
+  #view-chat .chat-bubble {
+    max-width: 100% !important;
+    padding: 9px 11px !important;
+    font-size: .77rem !important;
+    line-height: 1.4 !important;
+    border-radius: 14px 14px 14px 5px !important;
+  }
+
+  #view-chat .chat-row.mine .chat-bubble {
+    border-radius: 14px 14px 5px 14px !important;
+  }
+
+  #view-chat .chat-meta {
+    font-size: .57rem !important;
+  }
+
+  #view-chat .chat-mini-avatar {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    border-radius: 9px !important;
+  }
+
+  #view-chat .chat-typing {
+    display: none !important;
+  }
+
+  #view-chat .chat-composer {
+    width: 100% !important;
+    min-width: 0 !important;
+    padding: 8px 9px calc(9px + env(safe-area-inset-bottom)) !important;
+    box-sizing: border-box !important;
+  }
+
+  #view-chat .chat-compose-box {
+    width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    border-radius: 15px !important;
+    padding: 6px !important;
+  }
+
+  #view-chat .chat-compose-box textarea {
+    min-width: 0 !important;
+    font-size: .78rem !important;
+    padding: 7px 5px !important;
+  }
+
+  #view-chat .chat-send {
+    width: 40px !important;
+    min-width: 40px !important;
+    height: 40px !important;
+    border-radius: 12px !important;
+  }
+
+  #view-chat .chat-compose-tools {
+    padding: 0 2px !important;
+    font-size: .56rem !important;
+  }
+
+  #view-chat .chat-compose-tools span:first-child {
+    max-width: 72% !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+}
