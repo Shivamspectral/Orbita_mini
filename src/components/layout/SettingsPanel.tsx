@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import { useToast } from '../../context/ToastContext'
 import { useData } from '../../context/DataContext'
 import { useAuth } from '../../context/AuthContext'
-import { exportFullSnapshot } from '../../utils/export'
 
 export default function SettingsPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
   const showToast = useToast()
-  const { tasks, events, meetings, members, grievances, loadAll } = useData()
+  const { loadAll } = useData()
   const { user } = useAuth()
   const [dark, setDark] = useState(false)
   const [autoRefresh, setAutoRefresh] = useState(false)
@@ -44,17 +43,6 @@ export default function SettingsPanel({ open, onClose }: { open: boolean; onClos
     window.print()
   }
 
-  const onExportFullSnapshot = () => {
-    exportFullSnapshot({ user, tasks, events, meetings, members, grievances })
-    showToast('Full snapshot exported.')
-  }
-
-  const clearLocalWorkspace = () => {
-    if (!confirm('Clear locally stored chat, theme and preferences? Server records will not be deleted.')) return
-    ;['scms_chat_v42', 'scms_dark_mode', 'scms_auto_refresh'].forEach((k) => localStorage.removeItem(k))
-    showToast('Local workspace data cleared. Reloading...')
-    setTimeout(() => location.reload(), 600)
-  }
 
   return (
     <div className={`scms-settings-panel${open ? ' show' : ''}`} aria-hidden={!open}>
@@ -91,24 +79,9 @@ export default function SettingsPanel({ open, onClose }: { open: boolean; onClos
         </div>
       </div>
       <div className="scms-setting">
-        <div className="scms-setting-row">
-          <div>
-            <strong>Data mode</strong>
-            <small>Supabase cloud sync enabled. Local cache keeps the workspace responsive.</small>
-          </div>
-          <span className="pill-badge pill-green">CLOUD</span>
-        </div>
-      </div>
-      <div className="scms-setting">
-        <div className="toolbar-actions">
+        <div className="toolbar-actions settings-print-only">
           <button className="small-btn" onClick={printCurrentView}>
             <i className="fa-solid fa-print" /> Print
-          </button>
-          <button className="small-btn" onClick={onExportFullSnapshot}>
-            <i className="fa-solid fa-file-export" /> Full Export
-          </button>
-          <button className="small-btn" onClick={clearLocalWorkspace}>
-            <i className="fa-solid fa-trash" /> Clear Local Data
           </button>
         </div>
       </div>
