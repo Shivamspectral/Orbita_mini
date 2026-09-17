@@ -1282,3 +1282,61 @@
     grid-template-columns: 1fr 1fr !important;
   }
 }
+
+/* -------------------------------------------------------------------------
+   Public home mobile correction
+   Keep the desktop landing page untouched. On narrow screens the public
+   landing card must be a true single-column flow so the About Council panel
+   can never collapse into the desktop grid's second track.
+   ------------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  #home-screen {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 10px !important;
+  }
+
+  #home-screen .home-card {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    max-width: 520px !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    grid-template-columns: none !important;
+  }
+
+  #home-screen .home-hero,
+  #home-screen .home-side {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    box-sizing: border-box !important;
+  }
+
+  #home-screen .home-side {
+    display: block !important;
+    border-left: 0 !important;
+    border-top: 1px solid rgba(122,31,61,.10) !important;
+  }
+
+  #home-screen #home-leadership-list,
+  #home-screen .home-lead,
+  #home-screen .student-gallery {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  #home-screen .home-lead {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  #home-screen .home-side > div[style] {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
