@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
 import CommandPalette from './CommandPalette'
+import MobileNav from './MobileNav'
 
 export default function AppShell() {
   return (
@@ -13,6 +14,7 @@ export default function AppShell() {
           <Outlet />
         </main>
       </div>
+      <MobileNav />
       <CommandPalette />
     </div>
   )
