@@ -63,7 +63,12 @@ export async function apiFetch<T = any>(endpoint: string, options: ApiFetchOptio
   try {
     response = await fetch(base + '/api' + endpoint, { method, headers, body, cache: 'no-store' })
   } catch (e) {
-    throw new Error('Backend unavailable. Start the Orbita FastAPI server and try again.')
+    // Network failures must NOT invalidate a persisted login session.
+    // This matters on mobile/app startup where the API may take a moment
+    // to become reachable.
+    const error = new Error('Backend unavailable. Start the Orbita FastAPI server and try again.') as Error & { status?: number }
+    error.status = 0
+    throw error
   }
 
   const data = await response.json().catch(() => ({}))
@@ -72,7 +77,11 @@ export async function apiFetch<T = any>(endpoint: string, options: ApiFetchOptio
       clearToken()
       onUnauthorized?.()
     }
-    throw new Error(data.detail || data.error || `API request failed (${response.status})`)
+    const error = new Error(
+      data.detail || data.error || `API request failed (${response.status})`
+    ) as Error & { status?: number }
+    error.status = response.status
+    throw error
   }
   return data as T
 }

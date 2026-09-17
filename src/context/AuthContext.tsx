@@ -30,14 +30,40 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     ;(async () => {
       const token = getToken()
+
+      // Restore the last authenticated user immediately from the persisted
+      // frontend session. This prevents a refresh/app restart from briefly
+      // behaving like a logged-out user while the API is being reached.
       if (token) {
         try {
-          const profile = await apiFetch<User>('/auth/me')
-          if (profile) setUser(profile)
+          const cached = localStorage.getItem(SESSION_KEY)
+          if (cached) {
+            const parsed = JSON.parse(cached) as { user?: User }
+            if (parsed?.user) setUser(parsed.user)
+          }
         } catch {
-          clearSession()
+          // Ignore a corrupt cache. /auth/me below remains the source of truth.
+        }
+
+        try {
+          const profile = await apiFetch<User>('/auth/me')
+          if (profile) {
+            // Refresh the cached profile so app restarts have the latest role
+            // and account information available immediately.
+            setUser(profile)
+            localStorage.setItem(
+              SESSION_KEY,
+              JSON.stringify({ user: profile, restoredAt: new Date().toISOString() })
+            )
+          }
+        } catch {
+          // apiFetch() already clears the session when the backend explicitly
+          // returns 401. Network/server errors are intentionally ignored here
+          // so a temporary outage does not force a fresh login. The cached user
+          // remains available and the next API request can recover normally.
         }
       }
+
       setLoading(false)
     })()
   }, [clearSession])
