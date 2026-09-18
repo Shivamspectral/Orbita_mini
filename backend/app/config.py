@@ -8,15 +8,6 @@ from dotenv import load_dotenv
 # PROJECT PATHS
 # ============================================================
 
-# config.py
-#   backend/
-#     app/
-#       config.py
-#
-# parents[0] = backend/app
-# parents[1] = backend
-# parents[2] = project root
-
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_DIR = PROJECT_ROOT / "backend"
 ENV_FILE = BACKEND_DIR / ".env"
@@ -26,9 +17,6 @@ ENV_FILE = BACKEND_DIR / ".env"
 # ENVIRONMENT
 # ============================================================
 
-# Load backend/.env when running locally.
-# On Vercel, environment variables configured in Vercel
-# will also be available through os.getenv().
 load_dotenv(ENV_FILE)
 
 
@@ -75,6 +63,10 @@ COUNCIL_ID = os.getenv(
 # ============================================================
 
 DEFAULT_CORS_ORIGINS = (
+    "https://orbita-mini.vercel.app,"
+    "https://localhost,"
+    "http://localhost,"
+    "capacitor://localhost,"
     "http://localhost:5173,"
     "http://127.0.0.1:5173,"
     "http://localhost:8000,"
@@ -97,6 +89,4 @@ CORS_ORIGINS = [
 # OPTIONAL DEBUG INFORMATION
 # ============================================================
 
-# This only checks whether the local .env file exists.
-# Never print or expose the service-role key.
 ENV_FILE_EXISTS = ENV_FILE.exists()
